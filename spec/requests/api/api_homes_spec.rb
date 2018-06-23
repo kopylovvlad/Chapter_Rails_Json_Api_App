@@ -16,37 +16,19 @@ RSpec.describe 'Api::Home', type: :request do
       get '/api/sdfsfasdasdasdasdadasd'
 
       not_found_response(response)
-      expect(json['error']).to eq('Not found')
+      expect(json['error']).to eq("Use only 'Accept: application/json'")
     end
   end
 
-  describe 'api_current_user' do
-    it 'should show auth user' do
-      # prepare
-      user1 = FactoryBot.create(:user)
-      user2 = FactoryBot.create(:user)
-      sign_in user2
-
-      # action
+  describe 'root' do
+    it 'shoulda return json' do
       get(
-        api_current_user_path,
+        '/',
         headers: json_header
       )
 
       success_response(response)
-      expect(json['current']).to_not eq(nil)
-      expect(json['current']['id']).to eq(user2.id)
-      expect(json['current']['id']).to_not eq(user1.id)
-    end
-
-    it 'should show nil for guest' do
-      get(
-        api_current_user_path,
-        headers: json_header
-      )
-
-      success_response(response)
-      expect(json['current']).to eq(nil)
+      expect(json['hello']).to eq('hello')
     end
   end
 end

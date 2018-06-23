@@ -12,6 +12,7 @@ gem 'puma', '~> 3.7'
 gem 'jbuilder', '~> 2.5'
 gem 'bcrypt', '~> 3.1.7'
 gem 'apipie-rails'
+gem 'warden'
 
 group :development, :test do
   gem 'annotate'

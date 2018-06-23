@@ -7,13 +7,7 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'shoulda'
 require 'faker'
-require 'devise'
-require_relative 'helpers/devise_request_spec_helpers.rb'
 require_relative 'helpers/json_helpers.rb'
-require_relative 'shared/get_examples.rb'
-require_relative 'shared/delete_examples.rb'
-require_relative 'shared/post_examples.rb'
-require_relative 'shared/patch_examples.rb'
 require_relative 'shared/request_context.rb'
 # Add additional requires below this line. Rails is not loaded until this point!
 
@@ -39,12 +33,11 @@ ActiveRecord::Migration.maintain_test_schema!
 RSpec.configure do |config|
   # helpers
   config.include FactoryBot::Syntax::Methods
-  config.include DeviseRequestSpecHelpers, type: :request
   config.include JsonHelpers
   config.include_context 'request_shared_context'
 
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  # config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
   # If you're not using ActiveRecord, or you'd prefer not to run each of your
   # examples within a transaction, remove the following line or assign false
