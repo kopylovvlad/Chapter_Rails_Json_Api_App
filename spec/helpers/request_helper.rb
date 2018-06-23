@@ -1,6 +1,14 @@
 ###
 # it is a helper for any request test-cases
 module RequestHelpers
+  def sign_in(resource)
+    login_as(resource)
+  end
+
+  def sign_out(resource)
+    logout(resource)
+  end
+
   def json_header
     {
       'ACCEPT' => 'application/json'

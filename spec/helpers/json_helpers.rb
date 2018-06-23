@@ -5,6 +5,12 @@ module JsonHelpers
     expect(json['success']).to eq(true)
   end
 
+  def notauth_response(response)
+    expect(response.code).to eq('401')
+    expect(response.content_type).to eq('application/json')
+    expect(json['success']).to eq(false)
+  end
+
   def error_response(response)
     expect(response.code).to eq('422')
     expect(response.content_type).to eq('application/json')

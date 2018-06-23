@@ -6,7 +6,7 @@ Rails.configuration.middleware.use Warden::Manager do |manager|
     [
       '401',
       { 'Content-Type' => 'application/json' },
-      [{ error: 'Unauthorized' }.to_json]
+      [{ success: false, error: 'Unauthorized' }.to_json]
     ]
   end
 end
@@ -19,7 +19,8 @@ Warden::Strategies.add(:password) do
   end
 
   def authenticate!
-    if AuthUserService.perform(params['email'], params['password'])
+    user = User.find_by(email: params['email'])
+    if AuthUserService.perform(user, params['password'])
       success! user
     else
       fail! 'Oops'

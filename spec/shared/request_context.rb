@@ -1,17 +1,18 @@
 RSpec.shared_context 'request_shared_context', shared_context: :metadata do
-  let(:admin_user) { FactoryBot.create(:user_admin) }
-
-  def check_pagination(pagination)
-    expect(pagination.keys.size).to eq(6)
+  let(:user1) do
+    FactoryBot.create(
+      :user,
+      email: 'user1email@tmail.com',
+      encrypted_password: PasswordEncryptor.call('super_pass')
+    )
   end
 
-  def check_empty_pagination(pagination)
-    expect(pagination['current_page']).to eq(1)
-    expect(pagination['next_page']).to eq(nil)
-    expect(pagination['prev_page']).to eq(nil)
-    expect(pagination['first_page']).to eq(true)
-    expect(pagination['last_page']).to eq(true)
-    expect(pagination['total_pages']).to eq(1)
+  let(:user2) do
+    FactoryBot.create(
+      :user,
+      email: 'user2email@tmail.com',
+      encrypted_password: PasswordEncryptor.call('lololo')
+    )
   end
 
   def not_found_json(json)

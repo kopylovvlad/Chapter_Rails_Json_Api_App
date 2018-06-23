@@ -4,12 +4,16 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :null_session
 
   def current_user
-    env['warden'].user
+    warden.user
   end
 
   private
 
   def require_user
-    env['warden'].authenticate!
+    warden.authenticate!
+  end
+
+  def warden
+    request.env['warden']
   end
 end

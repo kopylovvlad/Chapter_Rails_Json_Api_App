@@ -32,6 +32,7 @@ ActiveRecord::Migration.maintain_test_schema!
 
 RSpec.configure do |config|
   # helpers
+  config.include ::Warden::Test::Helpers
   config.include FactoryBot::Syntax::Methods
   config.include JsonHelpers
   config.include_context 'request_shared_context'
