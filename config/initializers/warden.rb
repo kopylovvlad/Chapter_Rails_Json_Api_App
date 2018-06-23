@@ -18,12 +18,7 @@ Rails.configuration.middleware.use Warden::Manager do |manager|
 end
 
 Warden::Manager.serialize_into_session(&:id)
-Warden::Manager.serialize_from_session { |id|
-  puts '!!'
-  puts id
-  puts '!!'
-  User.find_by(id: id)
-}
+Warden::Manager.serialize_from_session { |id| User.find_by(id: id) }
 
 Warden::Strategies.add(:password) do
   def valid?

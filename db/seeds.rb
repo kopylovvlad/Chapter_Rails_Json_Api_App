@@ -5,6 +5,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+require 'factory_bot'
+Dir['./spec/factories/*.rb'].each { |file| require file }
 
 FactoryBot.create(
   :user,
