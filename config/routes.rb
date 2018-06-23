@@ -9,6 +9,7 @@ Rails.application.routes.draw do
     end
     resources :users, only: %i[index create show]
     resources :registrations, only: %i[create]
+    resources :chapters, only: %i[index create update show destroy]
   end
 
   match '*path', to: 'api/home#not_found', via: %i[get post put patch delete]

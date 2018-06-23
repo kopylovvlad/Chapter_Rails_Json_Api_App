@@ -11,9 +11,8 @@
 #
 
 class User < ApplicationRecord
+  has_many :chapters
+
   validates :email, presence: true, uniqueness: { case_sensitive: true }
   validates :login, presence: true, uniqueness: { case_sensitive: true }
-
-  # TODO: do I need it?
-  # validates :encrypted_password, presence: true
 end

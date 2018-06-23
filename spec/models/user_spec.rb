@@ -17,6 +17,8 @@ RSpec.describe User, type: :model do
   it { should validate_presence_of(:login) }
   # it { should validate_presence_of(:encrypted_password) }
 
+  it { should have_many(:chapters) }
+
   describe 'email should be uniq' do
     it 'works' do
       expect(User.count).to eq(0)
