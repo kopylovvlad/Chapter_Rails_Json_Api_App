@@ -10,5 +10,5 @@ Rails.application.configure do
   config.assets.quiet = true
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  config.action_controller.allow_forgery_protection = false
+  # config.action_controller.allow_forgery_protection = false
 end
