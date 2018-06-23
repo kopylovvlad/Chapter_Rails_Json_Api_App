@@ -20,6 +20,7 @@ Author can also update a chapter. Chapter update generates a special type of com
 - [ ] ChapterComment (index)
 - [ ] Chapter::Like CRUD
 - [ ] Chapter workflow with state-machine
+- [ ] Deploy to Heroku (with seeds)???
 
 ## Documentation
 
@@ -40,8 +41,3 @@ rails s
 ```bash
 rspec spec/
 ```
-
-## TODO
-
-- delete scaffold
-- deploy to Heroku
