@@ -15,8 +15,27 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   it { should validate_presence_of(:email) }
   it { should validate_presence_of(:login) }
-  it { should validate_presence_of(:encrypted_password) }
+  # it { should validate_presence_of(:encrypted_password) }
 
-  # it { should validate_uniqueness_of(:email) }
-  # it { should validate_uniqueness_of(:login) }
+  describe 'email should be uniq' do
+    it 'works' do
+      expect(User.count).to eq(0)
+      u1 = FactoryBot.build(
+        :user,
+        email: 'user1email@tmail.com',
+        encrypted_password: PasswordEncryptor.call('super_pass')
+      )
+      expect(u1.valid?).to eq(true)
+      expect(u1.save).to eq(true)
+
+      u2 = FactoryBot.build(
+        :user,
+        email: 'user1email@tmail.com',
+        encrypted_password: PasswordEncryptor.call('super_pass12')
+      )
+      expect(u2.valid?).to eq(false)
+      expect(u2.save).to eq(false)
+      expect(User.count).to eq(1)
+    end
+  end
 end

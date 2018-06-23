@@ -8,6 +8,7 @@ Rails.application.routes.draw do
       delete :destroy, on: :collection
     end
     resources :users, only: %i[index create show]
+    resources :registrations, only: %i[create]
   end
 
   match '*path', to: 'api/home#not_found', via: %i[get post put patch delete]

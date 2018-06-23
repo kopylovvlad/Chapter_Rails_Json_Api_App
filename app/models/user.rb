@@ -11,9 +11,9 @@
 #
 
 class User < ApplicationRecord
-  # PasswordEncryptor
-
   validates :email, presence: true, uniqueness: { case_sensitive: true }
   validates :login, presence: true, uniqueness: { case_sensitive: true }
-  validates :encrypted_password, presence: true
+
+  # TODO: do I need it?
+  # validates :encrypted_password, presence: true
 end

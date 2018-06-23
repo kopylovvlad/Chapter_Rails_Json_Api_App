@@ -1,0 +1,12 @@
+---
+success: false
+errors:
+  email:
+  - can't be blank
+  login:
+  - can't be blank
+  password_confirmation:
+  - can't be blank
+  - can't be blank
+  password:
+  - can't be blank

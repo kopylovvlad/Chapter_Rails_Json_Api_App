@@ -1,0 +1,20 @@
+Rails:
+  Enabled: true
+
+Metrics/LineLength:
+  Max: 80
+
+AllCops:
+  Exclude:
+    - db/migrate/*
+    - spec/*
+    - spec/**/*
+    - spec/**/**/*
+    - spec/**/**/**/*
+    - spec/**/**/**/**/*
+    - db/seeds.rb
+    - lib/tasks/*
+
+# I will user 'and' and 'or'
+Style/AndOr:
+  Enabled: false
