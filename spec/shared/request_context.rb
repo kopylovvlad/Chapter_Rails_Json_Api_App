@@ -15,6 +15,13 @@ RSpec.shared_context 'request_shared_context', shared_context: :metadata do
     )
   end
 
+  let(:user1_auth_params) do
+    {
+      email: 'user1email@tmail.com',
+      password: 'super_pass'
+    }
+  end
+
   def not_found_json(json)
     expect(json['error']).to eq('Not found')
   end

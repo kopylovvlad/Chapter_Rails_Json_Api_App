@@ -5,3 +5,14 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+
+FactoryBot.create(
+  :user,
+  email: 'user1email@tmail.com',
+  encrypted_password: PasswordEncryptor.call('super_pass')
+)
+FactoryBot.create(
+  :user,
+  email: 'user2email@tmail.com',
+  encrypted_password: PasswordEncryptor.call('lololo')
+)

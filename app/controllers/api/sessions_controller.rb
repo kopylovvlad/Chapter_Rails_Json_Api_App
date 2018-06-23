@@ -7,7 +7,7 @@ class Api::SessionsController < ApiController
   resource_description { short 'Api/Sessions endpoints' }
 
   def create
-    warden.authenticate!
+    require_user
     @user = current_user
     render :show
   end

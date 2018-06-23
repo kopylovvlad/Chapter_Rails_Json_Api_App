@@ -1,13 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'Api::sessions#create', type: :request do
-  let(:right_params) do
-    {
-      email: 'user1email@tmail.com',
-      password: 'super_pass'
-    }
-  end
-
   describe 'success' do
     it 'should create session' do
       # prepare
@@ -19,7 +12,7 @@ RSpec.describe 'Api::sessions#create', type: :request do
       post(
         api_sessions_path,
         headers: json_header,
-        params: right_params
+        params: user1_auth_params
       )
 
       # check
@@ -42,7 +35,7 @@ RSpec.describe 'Api::sessions#create', type: :request do
       post(
         api_sessions_path,
         headers: json_header,
-        params: right_params.merge(password: '=)')
+        params: user1_auth_params.merge(password: '=)')
       )
 
       # check
