@@ -7,6 +7,7 @@ Rails.application.routes.draw do
       get :current, on: :collection
       delete :destroy, on: :collection
     end
+    resources :users, only: %i[index create show]
   end
 
   match '*path', to: 'api/home#not_found', via: %i[get post put patch delete]

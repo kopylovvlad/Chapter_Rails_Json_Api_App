@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+# TODO: refactoring
 class ApiController < ApplicationController
   before_action :ensure_json_request
 
@@ -59,5 +60,9 @@ class ApiController < ApplicationController
       success: false,
       error: I18n.t('application.errors.incorrect_data')
     }, status: 403
+  end
+
+  def search_params
+    params.permit(pagination: %i[page per_page])
   end
 end
