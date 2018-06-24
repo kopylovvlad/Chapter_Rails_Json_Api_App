@@ -1,0 +1,5 @@
+---
+success: false
+errors:
+  body:
+  - can't be blank
