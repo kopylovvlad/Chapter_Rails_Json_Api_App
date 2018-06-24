@@ -2,26 +2,27 @@
 success: true
 chapters:
 - id: 1
-  title: '["repudiandae", "et", "accusantium", "dolore"]'
-  body: Iste corrupti itaque ducimus molestias quae est facilis. Veniam et ipsam.
-    Recusandae autem impedit aut numquam et.
+  title: saepe et quia est
+  body: Vero consequuntur minus occaecati voluptas iusto laborum. Consequatur aut
+    ex ut placeat fugiat. Suscipit quo odit et est cumque sit. Ad possimus fugit aut
+    iste et odio.
   user_id: 1
-  created_at: '2018-06-23 16:23:19 +0000'
-  updated_at: '2018-06-23 16:23:19 +0000'
+  created_at: '2018-06-24 11:22:50 +0000'
+  updated_at: '2018-06-24 11:22:50 +0000'
 - id: 2
-  title: '["libero", "ipsum", "doloribus", "eum"]'
-  body: Exercitationem molestiae dolorem iusto. Voluptatem ea incidunt voluptatem
-    unde enim et. Molestiae non fuga occaecati nemo.
+  title: sapiente recusandae consequatur possimus
+  body: Vel modi sint corporis quo esse. Eos qui molestias recusandae neque quis dolor
+    aut. Numquam et maiores enim minus necessitatibus sunt.
   user_id: 2
-  created_at: '2018-06-23 16:23:19 +0000'
-  updated_at: '2018-06-23 16:23:19 +0000'
+  created_at: '2018-06-24 11:22:50 +0000'
+  updated_at: '2018-06-24 11:22:50 +0000'
 - id: 3
-  title: '["dolor", "architecto", "dolorem", "necessitatibus"]'
-  body: Optio qui aut non iste. Aspernatur cum sequi repellat. Eveniet fugit non tempora
-    dolorem et. Blanditiis nemo delectus. Nemo quasi deserunt repudiandae possimus.
+  title: accusamus est vel excepturi
+  body: Magni repellat sed. Et beatae suscipit accusantium mollitia numquam. Odio
+    illo numquam quia veritatis amet. Omnis facilis quidem omnis ut ut.
   user_id: 3
-  created_at: '2018-06-23 16:23:19 +0000'
-  updated_at: '2018-06-23 16:23:19 +0000'
+  created_at: '2018-06-24 11:22:50 +0000'
+  updated_at: '2018-06-24 11:22:50 +0000'
 pagination:
   current_page: 1
   next_page: 2

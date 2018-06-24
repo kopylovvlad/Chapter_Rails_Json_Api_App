@@ -8,13 +8,34 @@
 require 'factory_bot'
 Dir['./spec/factories/*.rb'].each { |file| require file }
 
-FactoryBot.create(
+user1 = FactoryBot.create(
   :user,
   email: 'user1email@tmail.com',
   encrypted_password: PasswordEncryptor.call('super_pass')
 )
-FactoryBot.create(
+user2 = FactoryBot.create(
   :user,
   email: 'user2email@tmail.com',
   encrypted_password: PasswordEncryptor.call('lololo')
 )
+
+(2 + rand(3)).times do |i|
+  chapter = FactoryBot.create(
+    :chapter,
+    user: [user1, user2].sample
+  )
+
+  rand(3).times do |i2|
+    comment = FactoryBot.create(:comment, chapter: chapter)
+
+    if [true, false].sample == true
+      FactoryBot.create(
+        :like,
+        user: [user1, user2].sample,
+        comment: comment
+      )
+    end
+  end
+end
+
+

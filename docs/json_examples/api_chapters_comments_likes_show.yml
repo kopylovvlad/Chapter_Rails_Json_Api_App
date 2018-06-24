@@ -3,11 +3,11 @@ success: true
 id: 1
 user:
   id: 3
-  login: 11user_login
-  email: 8user@tmail.com
-  created_at: '2018-06-24 11:18:32 +0000'
-  updated_at: '2018-06-24 11:18:32 +0000'
+  login: 49user_login
+  email: 31user@tmail.com
+  created_at: '2018-06-24 11:22:47 +0000'
+  updated_at: '2018-06-24 11:22:47 +0000'
 user_id: 3
 comment_id: 1
-created_at: '2018-06-24 11:18:32 +0000'
-updated_at: '2018-06-24 11:18:32 +0000'
+created_at: '2018-06-24 11:22:47 +0000'
+updated_at: '2018-06-24 11:22:47 +0000'
