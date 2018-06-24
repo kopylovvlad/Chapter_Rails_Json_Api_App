@@ -40,3 +40,10 @@ rails s
 ```bash
 rspec spec/
 ```
+
+## Logins
+
+```bash
+user1email@tmail.com:super_pass
+user2email@tmail.com:lololo
+```

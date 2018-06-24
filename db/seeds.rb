@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 require 'factory_bot'
-Dir['./spec/factories/*.rb'].each { |file| require file }
+# Dir['./spec/factories/*.rb'].each { |file| require file }
 
 user1 = FactoryBot.create(
   :user,
@@ -25,8 +25,12 @@ user2 = FactoryBot.create(
     user: [user1, user2].sample
   )
 
-  rand(3).times do |i2|
-    comment = FactoryBot.create(:comment, chapter: chapter)
+  (2 + rand(3)).times do |i2|
+    comment = FactoryBot.create(
+      :comment,
+      chapter: chapter,
+      user: [user1, user2].sample
+    )
 
     if [true, false].sample == true
       FactoryBot.create(
