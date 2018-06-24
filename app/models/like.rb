@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: likes
@@ -15,7 +17,7 @@
 #
 
 class Like < ApplicationRecord
-  scope :preload_all, ->{ preload(:comment, :user) }
+  scope :preload_all, -> { preload(:comment, :user) }
   belongs_to :comment
   belongs_to :user
 

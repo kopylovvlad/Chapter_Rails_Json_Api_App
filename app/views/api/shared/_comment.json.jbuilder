@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.id item.id
 json.body item.body
 json.user_id item.user_id

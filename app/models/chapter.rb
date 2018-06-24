@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: chapters
@@ -17,7 +19,7 @@
 class Chapter < ApplicationRecord
   belongs_to :user
 
-  has_many :comments
+  has_many :comments, dependent: :destroy
 
   validates :title, presence: true
   validates :user, presence: true

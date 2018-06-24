@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserRegistrationShape < User
   include ApplicationShape
   attr_accessor :password

@@ -15,6 +15,9 @@ AllCops:
     - db/seeds.rb
     - lib/tasks/*
 
+Style/Documentation:
+  Enabled: false
+
 # I will user 'and' and 'or'
 Style/AndOr:
   Enabled: false

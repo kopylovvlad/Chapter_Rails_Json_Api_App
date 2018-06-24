@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 ##
 # how to use:
 #
@@ -15,10 +17,10 @@ module JsonYamlHelper
       "#{Rails.root}/docs/json_examples/#{file_path}.yml",
       'w'
     ) do |file|
-      file.puts YAML::dump(json)
+      file.puts YAML.dump(json)
     end
     true
-  rescue => e
+  rescue StandardError => e
     puts e.inspect
     false
   end
@@ -28,9 +30,9 @@ module JsonYamlHelper
       "#{Rails.root}/docs/json_examples/#{file_path}.yml",
       'r'
     )
-    raw = JSON.generate(YAML::load(file.read))
+    raw = JSON.generate(YAML.safe_load(file.read))
     JSON.pretty_generate(JSON.parse(raw)) # for pretty
-  rescue => e
+  rescue StandardError => e
     puts e.inspect
     ''
   end

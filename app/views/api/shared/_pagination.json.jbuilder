@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 if items.is_a?(ActiveRecord::Relation) and items.size.positive?
   json.pagination do
     json.current_page items.current_page

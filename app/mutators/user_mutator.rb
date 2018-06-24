@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class UserMutator
   def self.create(params)
     encrypted_password = PasswordEncryptor.call(params[:password])

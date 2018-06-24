@@ -20,7 +20,7 @@ module Api
 
     def create
       @item = ChapterMutator.create(create_params)
-      if @item.errors.size == 0
+      if @item.errors.empty?
         render :show
       else
         return render_json_errors @item.errors

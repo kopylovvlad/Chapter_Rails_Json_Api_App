@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.success true
 if @user.present?
   json.user do

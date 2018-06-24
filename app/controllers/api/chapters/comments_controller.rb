@@ -60,7 +60,7 @@ module Api
         params
           .require(:comments)
           .permit(:body)
-          .merge({user_id: current_user.id, chapter_id: @chapter.id})
+          .merge(user_id: current_user.id, chapter_id: @chapter.id)
       end
     end
   end

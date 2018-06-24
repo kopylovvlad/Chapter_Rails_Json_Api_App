@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 json.id item.id
 json.user do
   json.partial! 'api/shared/user', item: item.user

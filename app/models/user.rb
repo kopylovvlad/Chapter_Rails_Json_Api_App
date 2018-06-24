@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -11,9 +13,9 @@
 #
 
 class User < ApplicationRecord
-  has_many :chapters
-  has_many :comments
-  has_many :likes
+  has_many :chapters, dependent: :destroy
+  has_many :comments, dependent: :destroy
+  has_many :likes, dependent: :destroy
 
   validates :email, presence: true, uniqueness: { case_sensitive: true }
   validates :login, presence: true, uniqueness: { case_sensitive: true }

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module AuthUserService
   def self.perform(user, input_password)
     return false unless user.is_a?(User) and !user.new_record?

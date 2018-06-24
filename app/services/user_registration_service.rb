@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module UserRegistrationService
   def self.create(params)
     item = UserRegistrationShape.new(params)

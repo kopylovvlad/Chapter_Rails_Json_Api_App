@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # json.id @item.id
 # json.title @item.title
 # json.created_at l @item.created_at.in_time_zone

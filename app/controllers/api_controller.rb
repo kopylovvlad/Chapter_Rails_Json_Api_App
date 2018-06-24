@@ -25,7 +25,7 @@ class ApiController < ApplicationController
     render json: {
       success: false,
       error: 'Use only \'Accept: application/json\''
-    }, status: 404 and return
+    }, status: :not_found and return
   end
 
   def render_json_errors(errors = {})
@@ -45,7 +45,7 @@ class ApiController < ApplicationController
     render json: {
       success: false,
       error: I18n.t('application.errors.incorrect_data')
-    }, status: 422
+    }, status: :unprocessable_entity
   end
 
   def not_implemented
@@ -59,7 +59,7 @@ class ApiController < ApplicationController
     render json: {
       success: false,
       error: I18n.t('application.errors.incorrect_data')
-    }, status: 403
+    }, status: :forbidden
   end
 
   def search_params

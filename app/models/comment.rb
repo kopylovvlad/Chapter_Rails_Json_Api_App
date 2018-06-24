@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: comments
@@ -19,7 +21,7 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :chapter
 
-  has_many :likes
+  has_many :likes, dependent: :destroy
 
   validates :body, :user, :chapter, presence: true
 end
