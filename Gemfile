@@ -15,6 +15,7 @@ gem 'apipie-rails'
 gem 'warden'
 gem 'kaminari'
 gem 'factory_bot_rails'
+gem 'faker'
 
 group :development, :test do
   gem 'annotate'
@@ -25,7 +26,6 @@ group :development, :test do
 end
 
 group :development do
-  gem 'faker'
   gem 'listen', '>= 3.0.5', '< 3.2'
   gem 'shoulda'
   gem 'solargraph'
