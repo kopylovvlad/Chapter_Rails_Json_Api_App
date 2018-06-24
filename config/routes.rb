@@ -11,7 +11,13 @@ Rails.application.routes.draw do
     resources :registrations, only: %i[create]
     resources :chapters do
       scope :module => 'chapters' do
-        resources :comments
+        resources :comments do
+          scope :module => 'comments' do
+            resources :likes, only: %i[index create] do
+              delete :destroy, on: :collection
+            end
+          end
+        end
       end
     end
   end

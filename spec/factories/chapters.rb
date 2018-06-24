@@ -16,7 +16,7 @@
 
 FactoryBot.define do
   factory :chapter do
-    title { Faker::Lorem.words(4) }
+    title { Faker::Lorem.words(4).join(' ') }
     body { Faker::Lorem.paragraph }
     association :user, factory: :user
   end

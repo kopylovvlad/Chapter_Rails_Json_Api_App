@@ -1,6 +1,6 @@
 ## ChapterApp
 
-It is an app for RailsHurts project.
+It is an app for Painless Rails project.
 
 ## Task
 
@@ -16,9 +16,8 @@ Author can also update a chapter. Chapter update generates a special type of com
 - [x] Session
 - [x] Users (index, show)
 - [x] Chapter CRUD
-- [ ] Comment CRUD
-- [ ] ChapterComment (index)
-- [ ] Chapter::Like CRUD
+- [x] Comment CRUD
+- [x] Chapter::Comment::Like CRUD
 - [ ] Chapter workflow with state-machine
 - [ ] Deploy to Heroku (with seeds)???
 

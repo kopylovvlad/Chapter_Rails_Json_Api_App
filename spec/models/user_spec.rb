@@ -19,6 +19,7 @@ RSpec.describe User, type: :model do
 
   it { should have_many(:chapters) }
   it { should have_many(:comments) }
+  it { should have_many(:likes) }
 
   describe 'email should be uniq' do
     it 'works' do

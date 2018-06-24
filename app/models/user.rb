@@ -13,6 +13,7 @@
 class User < ApplicationRecord
   has_many :chapters
   has_many :comments
+  has_many :likes
 
   validates :email, presence: true, uniqueness: { case_sensitive: true }
   validates :login, presence: true, uniqueness: { case_sensitive: true }

@@ -19,5 +19,7 @@ class Comment < ApplicationRecord
   belongs_to :user
   belongs_to :chapter
 
+  has_many :likes
+
   validates :body, :user, :chapter, presence: true
 end

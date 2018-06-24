@@ -3,7 +3,7 @@
 module Api::Chapters::CommentsDoc
   extend ::Apipie::DSL::Concern
 
-  api :GET, 'api/chapters/comments', 'Get list of Comments'
+  api :GET, 'api/chapters/:chapter_id/comments', 'Get list of Comments'
   formats ['json']
   description 'Endpoint to see Comments for admin'
   example read_file('api_chapters_comments_index')
@@ -14,7 +14,7 @@ module Api::Chapters::CommentsDoc
   end
   def index; end
 
-  api :GET, 'api/chapters/comments/:id', 'Show Comment item'
+  api :GET, 'api/chapters/:chapter_id/comments/:id', 'Show Comment item'
   formats ['json']
   description 'Endpoint to see Comment for admin'
   example read_file('api_chapters_comments_show')
@@ -22,7 +22,7 @@ module Api::Chapters::CommentsDoc
   error code: 404, desc: 'Item does not exist'
   def show; end
 
-  api :POST, 'api/chapters/comments', 'Create new Comment'
+  api :POST, 'api/chapters/:chapter_id/comments', 'Create new Comment'
   formats ['json']
   description 'Endpoint to create comment'
   example "#{read_file('api_chapters_comments_create_success')}\n\r\n\r#{read_file('api_chapters_comments_create_fail')}"
@@ -35,7 +35,7 @@ module Api::Chapters::CommentsDoc
   end
   def create; end
 
-  api :PATCH, 'api/chapters/comments/:id', 'Update Comment'
+  api :PATCH, 'api/chapters/:chapter_id/comments/:id', 'Update Comment'
   formats ['json']
   description 'Endpoint to update Comment'
   example "#{read_file('api_chapters_comments_update_success')}\n\r\n\r#{read_file('api_chapters_comments_update_fail')}"
@@ -49,7 +49,7 @@ module Api::Chapters::CommentsDoc
   end
   def update; end
 
-  api :DELETE, 'api/chapters/comments/:id', 'Delete Comment'
+  api :DELETE, 'api/chapters/:chapter_id/comments/:id', 'Delete Comment'
   formats ['json']
   description 'Endpoint to delete Comment'
   example read_file('api_chapters_comments_show')
