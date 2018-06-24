@@ -11,6 +11,6 @@ test:
 
 production:
   adapter: postgresql
-  database: chapter_app_production
+  database: 'chapter-app-production'
   pool: 5
   timeout: 5000
