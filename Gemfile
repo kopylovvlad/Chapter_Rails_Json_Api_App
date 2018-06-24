@@ -14,12 +14,12 @@ gem 'bcrypt', '~> 3.1.7'
 gem 'apipie-rails'
 gem 'warden'
 gem 'kaminari'
+gem 'factory_bot_rails'
 
 group :development, :test do
   gem 'annotate'
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'database_cleaner'
-  gem 'factory_bot_rails'
   gem 'pry'
   gem 'rspec-rails', '~> 3.7'
 end
