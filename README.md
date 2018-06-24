@@ -19,7 +19,7 @@ Author can also update a chapter. Chapter update generates a special type of com
 - [x] Comment CRUD
 - [x] Chapter::Comment::Like CRUD
 - [ ] Chapter workflow with state-machine
-- [ ] Deploy to Heroku (with seeds)???
+- [x] Deploy to Heroku with seeds
 
 ## Documentation
 
@@ -41,7 +41,16 @@ rails s
 rspec spec/
 ```
 
-## Logins
+## Heroku
+
+```bash
+# api
+open chapter-rails-jsonapi.herokuapp.com
+# apipie
+open 'https://chapter-rails-jsonapi.herokuapp.com/apipie'
+```
+
+## Login
 
 ```bash
 user1email@tmail.com:super_pass
