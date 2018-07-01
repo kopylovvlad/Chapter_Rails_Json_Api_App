@@ -16,7 +16,7 @@
 
 require 'rails_helper'
 
-RSpec.describe Like, type: :model do
+RSpec.describe Chapter::Comment::Like, type: :model do
   it { should validate_presence_of(:user) }
   it { should validate_presence_of(:comment) }
   it { should belong_to(:user) }
@@ -35,17 +35,17 @@ RSpec.describe Like, type: :model do
           :comment,
           chapter: chapter
         )
-        expect(Like.count).to eq(0)
+        expect(Chapter::Comment::Like.count).to eq(0)
 
-        like1 = Like.new(user: user, comment: comment1)
+        like1 = Chapter::Comment::Like.new(user: user, comment: comment1)
         expect(like1.valid?).to eq(true)
         expect(like1.save).to eq(true)
 
-        like2 = Like.new(user: user, comment: comment2)
+        like2 = Chapter::Comment::Like.new(user: user, comment: comment2)
         expect(like2.valid?).to eq(true)
         expect(like2.save).to eq(true)
 
-        expect(Like.count).to eq(2)
+        expect(Chapter::Comment::Like.count).to eq(2)
       end
     end
 
@@ -58,17 +58,17 @@ RSpec.describe Like, type: :model do
           :comment,
           chapter: chapter
         )
-        expect(Like.count).to eq(0)
+        expect(Chapter::Comment::Like.count).to eq(0)
 
-        like1 = Like.new(user: user1, comment: comment)
+        like1 = Chapter::Comment::Like.new(user: user1, comment: comment)
         expect(like1.valid?).to eq(true)
         expect(like1.save).to eq(true)
 
-        like2 = Like.new(user: user2, comment: comment)
+        like2 = Chapter::Comment::Like.new(user: user2, comment: comment)
         expect(like2.valid?).to eq(true)
         expect(like2.save).to eq(true)
 
-        expect(Like.count).to eq(2)
+        expect(Chapter::Comment::Like.count).to eq(2)
       end
     end
 
@@ -79,17 +79,17 @@ RSpec.describe Like, type: :model do
           :comment,
           chapter: FactoryBot.create(:chapter)
         )
-        expect(Like.count).to eq(0)
+        expect(Chapter::Comment::Like.count).to eq(0)
 
-        like1 = Like.new(user: user, comment: comment)
+        like1 = Chapter::Comment::Like.new(user: user, comment: comment)
         expect(like1.valid?).to eq(true)
         expect(like1.save).to eq(true)
 
-        like2 = Like.new(user: user, comment: comment)
+        like2 = Chapter::Comment::Like.new(user: user, comment: comment)
         expect(like2.valid?).to eq(false)
         expect(like2.save).to eq(false)
 
-        expect(Like.count).to eq(1)
+        expect(Chapter::Comment::Like.count).to eq(1)
       end
     end
   end

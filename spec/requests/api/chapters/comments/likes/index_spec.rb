@@ -16,7 +16,7 @@ RSpec.describe 'Api::Chapters::Comments::likes#index', type: :request do
           comment: comment
         )
       end
-      expect(Like.count).to eq(6)
+      expect(Chapter::Comment::Like.count).to eq(6)
 
       # action
       get(
@@ -43,7 +43,7 @@ RSpec.describe 'Api::Chapters::Comments::likes#index', type: :request do
         user: FactoryBot.create(:user),
         chapter: chapter
       )
-      expect(Like.count).to eq(0)
+      expect(Chapter::Comment::Like.count).to eq(0)
 
       # action
       get(

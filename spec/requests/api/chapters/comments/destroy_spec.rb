@@ -23,7 +23,7 @@ RSpec.describe 'Api::Chapters::Comments#destroy', type: :request do
       user2
       item
       sign_in(user1)
-      expect(Comment.count).to eq(1)
+      expect(Chapter::Comment.count).to eq(1)
 
       # action
       delete(
@@ -33,13 +33,13 @@ RSpec.describe 'Api::Chapters::Comments#destroy', type: :request do
 
       # check
       success_response(response)
-      expect(Comment.count).to eq(0)
+      expect(Chapter::Comment.count).to eq(0)
     end
 
     it 'should return 404' do
       # prepare
       sign_in(user1)
-      expect(Comment.count).to eq(0)
+      expect(Chapter::Comment.count).to eq(0)
 
       # action
       delete(
@@ -58,7 +58,7 @@ RSpec.describe 'Api::Chapters::Comments#destroy', type: :request do
       user2
       item
       user1
-      expect(Comment.count).to eq(1)
+      expect(Chapter::Comment.count).to eq(1)
 
       # action
       delete(
@@ -68,7 +68,7 @@ RSpec.describe 'Api::Chapters::Comments#destroy', type: :request do
 
       # check
       notauth_response(response)
-      expect(Comment.count).to eq(1)
+      expect(Chapter::Comment.count).to eq(1)
     end
   end
 
@@ -77,7 +77,7 @@ RSpec.describe 'Api::Chapters::Comments#destroy', type: :request do
       user2
       item
       user1
-      expect(Comment.count).to eq(1)
+      expect(Chapter::Comment.count).to eq(1)
       sign_in(user2)
 
       # action
@@ -88,7 +88,7 @@ RSpec.describe 'Api::Chapters::Comments#destroy', type: :request do
 
       # check
       forbidden_response(response)
-      expect(Comment.count).to eq(1)
+      expect(Chapter::Comment.count).to eq(1)
     end
   end
 end

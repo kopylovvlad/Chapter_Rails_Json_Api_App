@@ -16,7 +16,7 @@
 #
 
 FactoryBot.define do
-  factory :comment do
+  factory :comment, class: 'Chapter::Comment' do
     body { Faker::Lorem.paragraph }
     association :user, factory: :user
     association :chapter, factory: :chapter

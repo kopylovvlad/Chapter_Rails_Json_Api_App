@@ -16,7 +16,7 @@ module Api
         before_action :require_user, only: %i[create destroy]
 
         def index
-          @items = Searcher.new(Like.preload_all, search_params).call
+          @items = Searcher.new(Chapter::Comment::Like.preload_all, search_params).call
         end
 
         def create

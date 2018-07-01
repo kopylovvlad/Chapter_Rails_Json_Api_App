@@ -19,7 +19,7 @@
 class Chapter < ApplicationRecord
   belongs_to :user
 
-  has_many :comments, dependent: :destroy
+  has_many :comments, dependent: :destroy, class_name: 'Chapter::Comment'
 
   validates :title, presence: true
   validates :user, presence: true

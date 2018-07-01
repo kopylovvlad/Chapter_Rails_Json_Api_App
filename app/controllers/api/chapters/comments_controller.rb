@@ -21,7 +21,7 @@ module Api
       def show; end
 
       def create
-        @item = Comment.new(item_params)
+        @item = Chapter::Comment.new(item_params)
         if @item.valid? and @item.save
           render :show
         else

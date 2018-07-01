@@ -15,7 +15,7 @@
 #
 
 FactoryBot.define do
-  factory :like do
-    
+  factory :like, class: 'Chapter::Comment::Like' do
+
   end
 end

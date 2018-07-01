@@ -9,7 +9,7 @@ RSpec.describe 'Api::Chapters::Comments::Likes#destroy', type: :request do
         comment: FactoryBot.create(:comment),
         user: FactoryBot.create(:user),
       )
-      expect(Like.count).to eq(1)
+      expect(Chapter::Comment::Like.count).to eq(1)
       sign_in(item.user)
 
       # action
@@ -25,7 +25,7 @@ RSpec.describe 'Api::Chapters::Comments::Likes#destroy', type: :request do
       expect(json['id']).to eq(item.id)
       expect(json['user_id']).to eq(item.user.id)
       expect(json['comment_id']).to eq(item.comment.id)
-      expect(Like.count).to eq(0)
+      expect(Chapter::Comment::Like.count).to eq(0)
       save_file('api_chapters_comments_likes_show', json)
     end
 
@@ -34,7 +34,7 @@ RSpec.describe 'Api::Chapters::Comments::Likes#destroy', type: :request do
         # prepare
         user = FactoryBot.create(:user)
         comment = FactoryBot.create(:comment, user: user)
-        expect(Like.count).to eq(0)
+        expect(Chapter::Comment::Like.count).to eq(0)
         sign_in(user)
 
         # action
@@ -54,8 +54,8 @@ RSpec.describe 'Api::Chapters::Comments::Likes#destroy', type: :request do
         # prepare
         user = FactoryBot.create(:user)
         chapter = FactoryBot.create(:chapter)
-        expect(Like.count).to eq(0)
-        expect(Comment.count).to eq(0)
+        expect(Chapter::Comment::Like.count).to eq(0)
+        expect(Chapter::Comment.count).to eq(0)
         sign_in(user)
 
         # action
@@ -74,8 +74,8 @@ RSpec.describe 'Api::Chapters::Comments::Likes#destroy', type: :request do
       it 'should return 404' do
         # prepare
         user = FactoryBot.create(:user)
-        expect(Like.count).to eq(0)
-        expect(Comment.count).to eq(0)
+        expect(Chapter::Comment::Like.count).to eq(0)
+        expect(Chapter::Comment.count).to eq(0)
         expect(Chapter.count).to eq(0)
         sign_in(user)
 
@@ -100,7 +100,7 @@ RSpec.describe 'Api::Chapters::Comments::Likes#destroy', type: :request do
         comment: FactoryBot.create(:comment),
         user: FactoryBot.create(:user),
       )
-      expect(Like.count).to eq(1)
+      expect(Chapter::Comment::Like.count).to eq(1)
 
       # action
       delete(
@@ -112,7 +112,7 @@ RSpec.describe 'Api::Chapters::Comments::Likes#destroy', type: :request do
 
       # check
       notauth_response(response)
-      expect(Like.count).to eq(1)
+      expect(Chapter::Comment::Like.count).to eq(1)
     end
   end
 end

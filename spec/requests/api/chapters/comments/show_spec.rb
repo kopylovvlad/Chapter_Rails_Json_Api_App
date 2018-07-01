@@ -4,7 +4,7 @@ RSpec.describe 'Api::Chapters::Comments#show', type: :request do
   it 'should render item' do
     # prepare
     item = FactoryBot.create(:comment)
-    expect(Comment.count).to eq(1)
+    expect(Chapter::Comment.count).to eq(1)
 
     # action
     get(
@@ -25,7 +25,7 @@ RSpec.describe 'Api::Chapters::Comments#show', type: :request do
     it 'should return 404' do
       # prepare
       expect(Chapter.count).to eq(0)
-      expect(Comment.count).to eq(0)
+      expect(Chapter::Comment.count).to eq(0)
 
       # action
       get(
@@ -43,7 +43,7 @@ RSpec.describe 'Api::Chapters::Comments#show', type: :request do
     it 'should return 404' do
       # prepare
       chapter = FactoryBot.create(:chapter)
-      expect(Comment.count).to eq(0)
+      expect(Chapter::Comment.count).to eq(0)
 
       # action
       get(

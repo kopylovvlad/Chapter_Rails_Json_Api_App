@@ -10,7 +10,7 @@ RSpec.describe 'Api::Chapters::commentss#index', type: :request do
         6,
         chapter: chapter
       )
-      expect(Comment.count).to eq(6)
+      expect(Chapter::Comment.count).to eq(6)
 
       # action
       get(
@@ -32,7 +32,7 @@ RSpec.describe 'Api::Chapters::commentss#index', type: :request do
     it 'should return empty array' do
       # prepare
       chapter = FactoryBot.create(:chapter)
-      expect(Comment.count).to eq(0)
+      expect(Chapter::Comment.count).to eq(0)
 
       # action
       get(

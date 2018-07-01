@@ -21,7 +21,7 @@ RSpec.describe 'Api::Chapters::Comments#update', type: :request do
     it 'should update item' do
       # prepare
       item
-      expect(Comment.all.count).to eq(1)
+      expect(Chapter::Comment.all.count).to eq(1)
       new_title = Faker::Lorem.words(5).join(' ')
       sign_in(user1)
 
@@ -43,7 +43,7 @@ RSpec.describe 'Api::Chapters::Comments#update', type: :request do
       expect(json['body']).to eq(new_title)
       expect(json['user_id']).to eq(user1.id)
       expect(json['chapter_id']).to eq(chapter.id)
-      expect(Comment.all.count).to eq(1)
+      expect(Chapter::Comment.all.count).to eq(1)
       save_file('api_chapters_comments_update_success', json)
     end
   end
@@ -52,9 +52,9 @@ RSpec.describe 'Api::Chapters::Comments#update', type: :request do
     it 'should return array with validation errors' do
       # prepare
       item
-      expect(Comment.all.count).to eq(1)
+      expect(Chapter::Comment.all.count).to eq(1)
       sign_in(user1)
-      expect(Comment.all.count).to eq(1)
+      expect(Chapter::Comment.all.count).to eq(1)
 
       # action
       patch(
@@ -72,7 +72,7 @@ RSpec.describe 'Api::Chapters::Comments#update', type: :request do
       error_response(response)
       expect(json['errors'].present?).to eq(true)
       expect(json['errors'].size).to be > 0
-      expect(Comment.all.count).to eq(1)
+      expect(Chapter::Comment.all.count).to eq(1)
       save_file('api_chapters_comments_update_fail', json)
     end
   end
@@ -81,7 +81,7 @@ RSpec.describe 'Api::Chapters::Comments#update', type: :request do
     it 'should return incorrect_data' do
       # prepare
       item
-      expect(Comment.all.count).to eq(1)
+      expect(Chapter::Comment.all.count).to eq(1)
       sign_in(user1)
 
       # action
@@ -96,7 +96,7 @@ RSpec.describe 'Api::Chapters::Comments#update', type: :request do
       # check
       error_response(response)
       error_json
-      expect(Comment.all.count).to eq(1)
+      expect(Chapter::Comment.all.count).to eq(1)
     end
   end
 
@@ -104,7 +104,7 @@ RSpec.describe 'Api::Chapters::Comments#update', type: :request do
     it 'should return 404' do
       # prepare
       sign_in(user1)
-      expect(Comment.all.count).to eq(0)
+      expect(Chapter::Comment.all.count).to eq(0)
 
       # action
       patch(
@@ -117,7 +117,7 @@ RSpec.describe 'Api::Chapters::Comments#update', type: :request do
 
       # check
       not_found_response(response)
-      expect(Comment.all.count).to eq(0)
+      expect(Chapter::Comment.all.count).to eq(0)
     end
   end
 
@@ -125,7 +125,7 @@ RSpec.describe 'Api::Chapters::Comments#update', type: :request do
     it 'should return noauth error' do
       # prepare
       item
-      expect(Comment.all.count).to eq(1)
+      expect(Chapter::Comment.all.count).to eq(1)
 
       # action
       patch(
@@ -141,7 +141,7 @@ RSpec.describe 'Api::Chapters::Comments#update', type: :request do
 
       # check
       notauth_response(response)
-      expect(Comment.all.count).to eq(1)
+      expect(Chapter::Comment.all.count).to eq(1)
     end
   end
 
@@ -149,7 +149,7 @@ RSpec.describe 'Api::Chapters::Comments#update', type: :request do
     it 'should return forbidden' do
       # prepare
       item
-      expect(Comment.all.count).to eq(1)
+      expect(Chapter::Comment.all.count).to eq(1)
       new_title = Faker::Lorem.words(5).join(' ')
       sign_in(user2)
 
@@ -167,9 +167,9 @@ RSpec.describe 'Api::Chapters::Comments#update', type: :request do
 
       # check
       forbidden_response(response)
-      comment = Comment.find(item.id)
+      comment = Chapter::Comment.find(item.id)
       expect(comment.body).to_not eq(new_title)
-      expect(Comment.all.count).to eq(1)
+      expect(Chapter::Comment.all.count).to eq(1)
     end
   end
 end

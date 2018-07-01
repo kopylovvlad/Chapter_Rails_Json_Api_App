@@ -13,7 +13,7 @@ RSpec.describe 'Api::Chapters::Comments::likes#create', type: :request do
     describe 'success' do
       it 'should create item' do
         # prepare
-        count = Like.all.count
+        count = Chapter::Comment::Like.all.count
         sign_in(user1)
 
         # action
@@ -27,7 +27,7 @@ RSpec.describe 'Api::Chapters::Comments::likes#create', type: :request do
         expect(json['id']).to_not eq(nil)
         expect(json['user_id']).to eq(user1.id)
         expect(json['comment_id']).to eq(comment.id)
-        expect(Like.all.count).to eq(count + 1)
+        expect(Chapter::Comment::Like.all.count).to eq(count + 1)
         save_file('api_chapters_comments_likes_create_success', json)
       end
     end
@@ -35,7 +35,7 @@ RSpec.describe 'Api::Chapters::Comments::likes#create', type: :request do
     describe 'comment does not exist' do
       it 'should return 404' do
         # prepare
-        count = Like.all.count
+        count = Chapter::Comment::Like.all.count
         sign_in(user1)
 
         # action
@@ -46,7 +46,7 @@ RSpec.describe 'Api::Chapters::Comments::likes#create', type: :request do
 
         # check
         not_found_response(response)
-        expect(Like.all.count).to eq(count)
+        expect(Chapter::Comment::Like.all.count).to eq(count)
         save_file('api_chapters_comments_likes_create_fail', json)
       end
     end
@@ -54,7 +54,7 @@ RSpec.describe 'Api::Chapters::Comments::likes#create', type: :request do
     describe 'chapter does not exist' do
       it 'should return 404' do
         # prepare
-        count = Like.all.count
+        count = Chapter::Comment::Like.all.count
         sign_in(user1)
 
         # action
@@ -65,7 +65,7 @@ RSpec.describe 'Api::Chapters::Comments::likes#create', type: :request do
 
         # check
         not_found_response(response)
-        expect(Like.all.count).to eq(count)
+        expect(Chapter::Comment::Like.all.count).to eq(count)
       end
     end
   end
@@ -73,7 +73,7 @@ RSpec.describe 'Api::Chapters::Comments::likes#create', type: :request do
   describe 'guest' do
     it 'should return no auth' do
       # prepare
-      count = Like.all.count
+      count = Chapter::Comment::Like.all.count
 
       # action
       post(
@@ -83,7 +83,7 @@ RSpec.describe 'Api::Chapters::Comments::likes#create', type: :request do
 
       # check
       notauth_response(response)
-      expect(Like.all.count).to eq(count)
+      expect(Chapter::Comment::Like.all.count).to eq(count)
     end
   end
 end

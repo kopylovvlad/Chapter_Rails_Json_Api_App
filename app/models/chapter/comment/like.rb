@@ -16,7 +16,8 @@
 #  index_likes_on_user_id     (user_id)
 #
 
-class Like < ApplicationRecord
+class Chapter::Comment::Like < ApplicationRecord
+  self.table_name = 'likes'
   scope :preload_all, -> { preload(:comment, :user) }
   belongs_to :comment
   belongs_to :user

@@ -14,8 +14,8 @@
 
 class User < ApplicationRecord
   has_many :chapters, dependent: :destroy
-  has_many :comments, dependent: :destroy
-  has_many :likes, dependent: :destroy
+  has_many :comments, dependent: :destroy, class_name: 'Chapter::Comment'
+  has_many :likes, dependent: :destroy, class_name: 'Chapter::Comment::Like'
 
   validates :email, presence: true, uniqueness: { case_sensitive: true }
   validates :login, presence: true, uniqueness: { case_sensitive: true }

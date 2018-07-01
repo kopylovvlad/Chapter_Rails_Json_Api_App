@@ -17,7 +17,8 @@
 #  index_comments_on_user_id     (user_id)
 #
 
-class Comment < ApplicationRecord
+class Chapter::Comment < ApplicationRecord
+  self.table_name = 'comments'
   belongs_to :user
   belongs_to :chapter
 
