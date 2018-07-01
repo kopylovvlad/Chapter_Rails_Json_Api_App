@@ -27,7 +27,7 @@ Warden::Strategies.add(:password) do
 
   def authenticate!
     user = User.find_by(email: params['email'])
-    if AuthUserService.perform(user, params['password'])
+    if UserService.authenticate(user, params['password'])
       success! user
     else
       fail! 'Oops'

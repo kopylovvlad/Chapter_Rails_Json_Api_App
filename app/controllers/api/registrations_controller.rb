@@ -8,11 +8,12 @@ module Api
     resource_description { short 'Api/Registrations endpoints' }
 
     def create
-      @item = UserRegistrationService.create(item_params)
-      if @item.errors.empty?
+      shape = UserRegistrationShape.new(item_params)
+      if shape.valid?
+        @item = UserMutator.create(item_params)
         render :show
       else
-        return render_json_errors @item.errors
+        return render_json_errors(shape.errors)
       end
     end
 

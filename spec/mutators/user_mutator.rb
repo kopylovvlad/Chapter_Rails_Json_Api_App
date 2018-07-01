@@ -29,7 +29,7 @@ RSpec.describe UserMutator, type: :model do
     item = UserMutator.create(input_params)
 
     # action
-    answer = AuthUserService.perform(item, input_params[:password])
+    answer = UserService.authenticate(item, input_params[:password])
 
     # check
     expect(answer).to eq(true)

@@ -19,8 +19,8 @@ module Api
     def show; end
 
     def create
-      @item = ChapterMutator.create(create_params)
-      if @item.errors.empty?
+      @item = Chapter.new(create_params)
+      if @item.valid? and @item.save
         render :show
       else
         return render_json_errors @item.errors
