@@ -5,15 +5,11 @@
 module Api
   module Chapters
     module Comments
-      class LikesController < ApiController
+      class LikesController < Api::Chapters::Comments::ApplicationController
         include Api::Chapters::Comments::LikesDoc
         resource_description do
           short 'Api/Chapters/Comments/Likes endpoints'
         end
-
-        before_action :set_chapter
-        before_action :set_comment
-        before_action :require_user, only: %i[create destroy]
 
         def index
           @items = Searcher.new(Chapter::Comment::Like.preload_all, search_params).call
@@ -35,14 +31,6 @@ module Api
         end
 
         private
-
-        def set_chapter
-          @chapter = Chapter.find(params[:chapter_id])
-        end
-
-        def set_comment
-          @comment = @chapter.comments.find(params[:comment_id])
-        end
 
         def item_params
           {

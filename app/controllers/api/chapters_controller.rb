@@ -3,14 +3,25 @@
 ##
 # Api/Chapters
 module Api
-  class ChaptersController < ApiController
-    include Api::ChaptersDoc
-    resource_description { short 'Api/Chapters endpoints' }
-
-    # TODO: is it right way?
+  # TODO: replace it!
+  class ApplicationController < ApiController
     before_action :require_user, only: %i[create update destroy]
     before_action :set_item, only: %i[show update destroy]
     before_action :check_author, only: %i[update destroy]
+
+    private
+
+    def check_author
+      return forbidden unless @item.user_id == current_user.id
+    end
+
+    def set_item
+      @item = Chapter.find(params[:id])
+    end
+  end
+  class ChaptersController < Api::ApplicationController
+    include Api::ChaptersDoc
+    resource_description { short 'Api/Chapters endpoints' }
 
     def index
       @items = Searcher.new(Chapter.all, search_params).call
@@ -41,14 +52,6 @@ module Api
     end
 
     private
-
-    def check_author
-      return forbidden unless @item.user_id == current_user.id
-    end
-
-    def set_item
-      @item = Chapter.find(params[:id])
-    end
 
     def create_params
       item_params.merge(user_id: current_user.id)

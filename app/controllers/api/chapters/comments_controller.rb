@@ -4,15 +4,30 @@
 # Api/Chapters/Comments
 module Api
   module Chapters
-    class CommentsController < ApiController
-      include Api::Chapters::CommentsDoc
-      resource_description { short 'Api/Chapters/Comments endpoints' }
-
-      # TODO: is it right way?
+    # TODO: replace it
+    class ApplicationController < ApiController
       before_action :set_chapter
       before_action :require_user, only: %i[create update destroy]
       before_action :set_item, only: %i[show update destroy]
       before_action :check_author, only: %i[update destroy]
+
+      private
+
+      def set_item
+        @item = @chapter.comments.find(params[:id])
+      end
+
+      def check_author
+        return forbidden unless @item.user_id == current_user.id
+      end
+
+      def set_chapter
+        @chapter = Chapter.find(params[:chapter_id])
+      end
+    end
+    class CommentsController < Api::Chapters::ApplicationController
+      include Api::Chapters::CommentsDoc
+      resource_description { short 'Api/Chapters/Comments endpoints' }
 
       def index
         @items = Searcher.new(@chapter.comments.all, search_params).call
@@ -43,18 +58,6 @@ module Api
       end
 
       private
-
-      def set_item
-        @item = @chapter.comments.find(params[:id])
-      end
-
-      def check_author
-        return forbidden unless @item.user_id == current_user.id
-      end
-
-      def set_chapter
-        @chapter = Chapter.find(params[:chapter_id])
-      end
 
       def item_params
         params
