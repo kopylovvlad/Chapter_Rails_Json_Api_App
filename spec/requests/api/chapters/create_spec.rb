@@ -28,6 +28,7 @@ RSpec.describe 'Api::chapters#create', type: :request do
       expect(json['title']).to eq('some title')
       expect(json['body']).to eq('body body')
       expect(json['user_id']).to eq(user1.id)
+      expect(json['state']).to eq('draft')
       expect(Chapter.all.count).to eq(count + 1)
       save_file('api_chapters_create_success', json)
     end

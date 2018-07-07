@@ -7,10 +7,21 @@ Rails.application.routes.draw do
       get :current, on: :collection
       delete :destroy, on: :collection
     end
-    resources :users, only: %i[index create show]
+    resources :users, only: %i[index create show] do
+      scope :module => 'users' do
+        resources :chapters, only: %i[index show]
+      end
+    end
     resources :registrations, only: %i[create]
     resources :chapters do
       scope :module => 'chapters' do
+        resources :states, only: [] do
+          collection do
+            patch :on_review
+            patch :approved
+            patch :published
+          end
+        end
         resources :comments do
           scope :module => 'comments' do
             resources :likes, only: %i[index create] do

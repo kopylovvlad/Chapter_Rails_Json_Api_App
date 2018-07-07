@@ -4,8 +4,9 @@ RSpec.describe 'Api::chapterss#index', type: :request do
   describe 'index with pagination' do
     it 'should return 3 items' do
       # prepare
-      FactoryBot.create_list(:chapter, 6)
-      expect(Chapter.count).to eq(6)
+      FactoryBot.create_list(:chapter, 2, state: 'draft')
+      FactoryBot.create_list(:chapter, 3, state: 'on_review')
+      expect(Chapter.count).to eq(5)
 
       # action
       get(

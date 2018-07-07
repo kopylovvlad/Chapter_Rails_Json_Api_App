@@ -19,12 +19,13 @@ module Api
       @item = Chapter.find(params[:id])
     end
   end
+
   class ChaptersController < Api::ApplicationController
     include Api::ChaptersDoc
     resource_description { short 'Api/Chapters endpoints' }
 
     def index
-      @items = Searcher.new(Chapter.all, search_params).call
+      @items = Searcher.new(Chapter.not_draft, search_params).call
     end
 
     def show; end

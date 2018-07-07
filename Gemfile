@@ -16,6 +16,7 @@ gem 'warden'
 gem 'kaminari'
 gem 'factory_bot_rails'
 gem 'faker'
+gem 'state_machines-activerecord'
 
 group :development, :test do
   gem 'annotate'

@@ -2,7 +2,7 @@
 #
 # Table name: chapters
 #
-#  id         :integer          not null, primary key
+#  id         :bigint(8)        not null, primary key
 #  title      :string           not null
 #  body       :text
 #  created_at :datetime         not null
@@ -21,4 +21,14 @@ RSpec.describe Chapter, type: :model do
   it { should validate_presence_of(:user) }
   it { should belong_to(:user) }
   it { should have_many(:comments) }
+
+  describe 'state-machine' do
+    it 'should have default state' do
+      i = FactoryBot.build(:chapter)
+      expect(i.state).to eq('draft')
+
+      i2 = FactoryBot.create(:chapter)
+      expect(i2.state).to eq('draft')
+    end
+  end
 end
