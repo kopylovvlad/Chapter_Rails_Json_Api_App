@@ -19,6 +19,7 @@ Author can also update a chapter. Chapter update generates a special type of com
 - [x] Comment CRUD
 - [x] Chapter::Comment::Like CRUD
 - [ ] Chapter workflow with state-machine
+- [ ] Nested ApplicationController O_o
 - [x] Deploy to Heroku with seeds
 
 ## Documentation

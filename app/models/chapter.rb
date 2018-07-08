@@ -25,7 +25,7 @@ class Chapter < ApplicationRecord
   validates :user, presence: true
 
   # state-machine
-  # draft, on review, approved, published
+  # draft, on_review, approved, published
   state_machine :state, attribute: :state, initial: :draft do
     event :reviewing do
       transition :draft => :on_review

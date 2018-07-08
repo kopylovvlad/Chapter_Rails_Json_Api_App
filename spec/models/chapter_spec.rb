@@ -30,5 +30,15 @@ RSpec.describe Chapter, type: :model do
       i2 = FactoryBot.create(:chapter)
       expect(i2.state).to eq('draft')
     end
+
+    describe 'reviewing' do
+      it 'should work' do
+        item = FactoryBot.build(:chapter)
+        expect(item.state).to eq('draft')
+
+        item.reviewing
+        expect(item.state).to eq('on_review')
+      end
+    end
   end
 end

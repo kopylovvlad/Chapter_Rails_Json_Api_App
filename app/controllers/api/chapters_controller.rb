@@ -40,6 +40,7 @@ module Api
     end
 
     def update
+      # TODO: system_comment
       if @item.update(item_params)
         render :show
       else
