@@ -3,26 +3,14 @@
 ##
 # Api/Chapters
 module Api
-  # TODO: replace it!
-  class ApplicationController < ApiController
+  class ChaptersController < ApiController
+    include Api::ChaptersDoc
+    resource_description { short 'Api/Chapters endpoints' }
+
+    # TODO: replace it!
     before_action :require_user, only: %i[create update destroy]
     before_action :set_item, only: %i[show update destroy]
     before_action :check_author, only: %i[update destroy]
-
-    private
-
-    def check_author
-      return forbidden unless @item.user_id == current_user.id
-    end
-
-    def set_item
-      @item = Chapter.find(params[:id])
-    end
-  end
-
-  class ChaptersController < Api::ApplicationController
-    include Api::ChaptersDoc
-    resource_description { short 'Api/Chapters endpoints' }
 
     def index
       @items = Searcher.new(Chapter.not_draft, search_params).call
@@ -62,6 +50,14 @@ module Api
 
     def item_params
       params.require(:chapters).permit(:title, :body)
+    end
+
+    def check_author
+      return forbidden unless @item.user_id == current_user.id
+    end
+
+    def set_item
+      @item = Chapter.find(params[:id])
     end
   end
 end
