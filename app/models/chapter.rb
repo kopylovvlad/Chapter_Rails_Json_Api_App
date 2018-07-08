@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: chapters
@@ -16,7 +17,7 @@
 #
 
 class Chapter < ApplicationRecord
-  scope :not_draft, ->{ where.not(state: 'draft') }
+  scope :not_draft, -> { where.not(state: 'draft') }
   belongs_to :user
 
   has_many :comments, dependent: :destroy, class_name: 'Chapter::Comment'
@@ -28,13 +29,13 @@ class Chapter < ApplicationRecord
   # draft, on_review, approved, published
   state_machine :state, attribute: :state, initial: :draft do
     event :reviewing do
-      transition :draft => :on_review
+      transition draft: :on_review
     end
     event :approving do
-      transition :on_review => :approved
+      transition on_review: :approved
     end
     event :publishing do
-      transition :approved => :published
+      transition approved: :published
     end
 
     # state :first_gear, :second_gear do

@@ -8,7 +8,7 @@ module Api::Users::ChaptersDoc
   description 'Endpoint to see Chapters for admin'
   example read_file('api_users_chapters_index')
   error code: 404, desc: "Use only 'Accept: application/json'"
-  error code: 403, desc: "current_user must be an author"
+  error code: 403, desc: 'current_user must be an author'
   param :pagination, Hash do
     param :page, Integer, required: false
     param :per_page, Integer, required: false
@@ -21,6 +21,6 @@ module Api::Users::ChaptersDoc
   example read_file('api_users_chapters_show')
   error code: 404, desc: "Use only 'Accept: application/json'"
   error code: 404, desc: 'Item does not exist'
-  error code: 403, desc: "current_user must be an author"
+  error code: 403, desc: 'current_user must be an author'
   def show; end
 end

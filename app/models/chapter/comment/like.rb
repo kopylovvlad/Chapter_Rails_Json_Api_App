@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: likes
@@ -28,7 +29,7 @@ class Chapter::Comment::Like < ApplicationRecord
   private
 
   def only_user_comment
-    return unless comment.present?
+    return if comment.blank?
     return if comment.user.present?
     errors.add(:comment, 'You can\'t like system comment')
   end

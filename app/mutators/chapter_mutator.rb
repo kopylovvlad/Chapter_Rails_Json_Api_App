@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChapterMutator
   def self.update(item)
     ActiveRecord::Base.transaction do

@@ -31,9 +31,7 @@ module Api
       end
 
       def check_current_user
-        if current_user.blank? || current_user.id != @user.id
-          return forbidden
-        end
+        return forbidden if current_user.blank? || current_user.id != @user.id
       end
     end
   end

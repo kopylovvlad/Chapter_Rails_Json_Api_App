@@ -19,9 +19,9 @@ module Api
         if ChapterPolicy.able_to_approving?(@chapter)
           @chapter = ChapterMutator.approving(@chapter)
         else
-          return render_json_errors({
+          render_json_errors(
             comments: 'less than 50% of paticipants commented it'
-          })
+          )
         end
       end
 

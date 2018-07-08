@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class ChapterCommentMutator
   def self.create_system_comment(chapter)
     Chapter::Comment.create(
