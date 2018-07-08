@@ -93,4 +93,39 @@ RSpec.describe Chapter::Comment::Like, type: :model do
       end
     end
   end
+
+  describe 'creating' do
+    describe 'user comment' do
+      it 'should work' do
+        user = FactoryBot.create(:user)
+        comment = FactoryBot.create(
+          :comment,
+          chapter: FactoryBot.create(:chapter, user: user),
+          user: user
+        )
+
+        like = Chapter::Comment::Like.new(user: user, comment: comment)
+
+        expect(like.valid?).to eq(true)
+        expect(like.save).to eq(true)
+      end
+    end
+
+    describe 'system comment' do
+      it 'should not work' do
+        user = FactoryBot.create(:user)
+        comment = FactoryBot.create(
+          :comment,
+          chapter: FactoryBot.create(:chapter, user: user),
+          user: nil
+        )
+
+        like = Chapter::Comment::Like.new(user: user, comment: comment)
+
+        expect(like.valid?).to eq(false)
+        expect(like.errors.keys).to include(:comment)
+        expect(like.save).to eq(false)
+      end
+    end
+  end
 end

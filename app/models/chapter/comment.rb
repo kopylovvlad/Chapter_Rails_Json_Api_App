@@ -18,10 +18,10 @@
 
 class Chapter::Comment < ApplicationRecord
   self.table_name = 'comments'
-  belongs_to :user
+  belongs_to :user, optional: true
   belongs_to :chapter
 
   has_many :likes, dependent: :destroy
 
-  validates :body, :user, :chapter, presence: true
+  validates :body, :chapter, presence: true
 end

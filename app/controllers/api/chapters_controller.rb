@@ -40,8 +40,9 @@ module Api
     end
 
     def update
-      # TODO: system_comment
-      if @item.update(item_params)
+      @item.assign_attributes(item_params)
+      if @item.valid?
+        @item = ChapterMutator.update(@item)
         render :show
       else
         render_json_errors @item.errors

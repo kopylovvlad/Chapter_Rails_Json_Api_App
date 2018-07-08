@@ -5,6 +5,7 @@ RSpec.describe 'Api::Chapters::States#published', type: :request do
   let(:item) do
     FactoryBot.create(:chapter, user: author, state: 'approved')
   end
+
   describe 'success' do
     it 'should update item' do
       # prepare
@@ -22,6 +23,30 @@ RSpec.describe 'Api::Chapters::States#published', type: :request do
       success_response(response)
       expect(json['id']).to eq(item.id)
       expect(Chapter.find(item.id).state).to eq('published')
+    end
+
+    it 'should create system comment' do
+      # prepare
+      item
+      expect(Chapter.find(item.id).state).to eq('approved')
+      expect(Chapter::Comment.count).to eq(0)
+      sign_in(author)
+
+      # action
+      patch(
+        published_api_chapter_states_path(item),
+        headers: json_header,
+      )
+
+      # check
+      success_response(response)
+      expect(json['id']).to eq(item.id)
+      expect(Chapter.find(item.id).state).to eq('published')
+      expect(Chapter::Comment.count).to eq(1)
+      comment = Chapter::Comment.first
+      expect(comment.user).to eq(nil)
+      expect(comment.chapter).to eq(item)
+      expect(comment.body).to eq('Author updated the chapter')
     end
   end
 

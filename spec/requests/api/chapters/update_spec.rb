@@ -39,6 +39,37 @@ RSpec.describe 'Api::Chapters#update', type: :request do
       expect(Chapter.all.count).to eq(1)
       save_file('api_chapters_update_success', json)
     end
+
+    it 'should create system comment' do
+      # prepare
+      item
+      expect(Chapter.all.count).to eq(1)
+      expect(item.user_id).to eq(user1.id)
+      expect(Chapter::Comment.all.count).to eq(0)
+      sign_in(user1)
+
+      # action
+      patch(
+        api_chapter_path(item),
+        headers: json_header,
+        params: {
+          chapters:
+            {
+              title: 'new_title',
+              body: 'new_body'
+            }
+        }
+      )
+
+      # check
+      success_response(response)
+      expect(Chapter.all.count).to eq(1)
+      expect(Chapter::Comment.all.count).to eq(1)
+      comment = Chapter::Comment.first
+      expect(comment.body).to eq('Author updated the chapter')
+      expect(comment.user).to eq(nil)
+      expect(comment.chapter).to eq(item)
+    end
   end
 
   describe 'invalid item' do

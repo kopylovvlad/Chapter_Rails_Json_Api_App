@@ -23,4 +23,13 @@ class Chapter::Comment::Like < ApplicationRecord
 
   validates :comment, presence: true
   validates :user, presence: true, uniqueness: { scope: :comment }
+  validate :only_user_comment
+
+  private
+
+  def only_user_comment
+    return unless comment.present?
+    return if comment.user.present?
+    errors.add(:comment, 'You can\'t like system comment')
+  end
 end

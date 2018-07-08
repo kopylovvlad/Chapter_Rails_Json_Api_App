@@ -32,6 +32,26 @@ RSpec.describe 'Api::Chapters::Comments::likes#create', type: :request do
       end
     end
 
+    describe 'comment is system' do
+      it 'should return errors' do
+        # prepare
+        count = Chapter::Comment::Like.all.count
+        sys_comment = ChapterCommentMutator.create_system_comment(chapter)
+        sign_in(user1)
+
+        # action
+        post(
+          api_chapter_comment_likes_path(chapter, sys_comment),
+          headers: json_header,
+        )
+
+        # check
+        error_response(response)
+        expect(json['errors'].keys.size).to be > 0
+        expect(Chapter::Comment::Like.all.count).to eq(count)
+      end
+    end
+
     describe 'comment does not exist' do
       it 'should return 404' do
         # prepare
