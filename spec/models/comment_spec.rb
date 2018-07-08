@@ -23,4 +23,47 @@ RSpec.describe Chapter::Comment, type: :model do
   it { should belong_to(:user) }
   it { should belong_to(:chapter) }
   it { should have_many(:likes) }
+
+  describe 'scopes' do
+    def prepare_data
+      FactoryBot.create_list(
+        :comment,
+        2
+      )
+
+      FactoryBot.create_list(
+        :comment,
+        3,
+        user: nil
+      )
+    end
+
+    describe '.only_system' do
+      it 'should work' do
+        # prepare
+        prepare_data
+        expect(Chapter::Comment.count).to eq(5)
+
+        # action
+        count = Chapter::Comment.only_system.count
+
+        # check
+        expect(count).to eq(3)
+      end
+    end
+
+    describe '.not_system' do
+      it 'should work' do
+        # prepare
+        prepare_data
+        expect(Chapter::Comment.count).to eq(5)
+
+        # action
+        count = Chapter::Comment.not_system.count
+
+        # check
+        expect(count).to eq(2)
+      end
+    end
+  end
 end

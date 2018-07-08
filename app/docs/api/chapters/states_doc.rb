@@ -21,7 +21,7 @@ module Api::Chapters::StatesDoc
   error code: 404, desc: 'Item does not exist'
   error code: 403, desc: 'User must be authenticated'
   error code: 403, desc: 'Current user must be an author'
-  # TODO: validate error
+  error code: 422, desc: 'many than 50% of paticipants must commented it'
   def approved; end
 
   api :PATCH, 'api/chapters/:chapter_id/states/published', 'Update State'

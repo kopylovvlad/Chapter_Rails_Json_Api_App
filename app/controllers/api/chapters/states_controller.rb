@@ -15,11 +15,14 @@ module Api
         @chapter = ChapterMutator.reviewing(@chapter) if @chapter.draft?
       end
 
-      # Status can’t be changed to “approved” if less than 50% of paticipants commented on it.
       def approved
-        @chapter.approving if @chapter.on_review?
-        # TODO: validate
-        # TODO: system comment
+        if ChapterPolicy.able_to_approving?(@chapter)
+          @chapter = ChapterMutator.approving(@chapter)
+        else
+          return render_json_errors({
+            comments: 'less than 50% of paticipants commented it'
+          })
+        end
       end
 
       def published

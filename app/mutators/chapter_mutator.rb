@@ -15,6 +15,14 @@ class ChapterMutator
     item
   end
 
+  def self.approving(item)
+    ActiveRecord::Base.transaction do
+      item.approving
+      ::ChapterCommentMutator.create_system_comment(item)
+    end
+    item
+  end
+
   def self.publishing(item)
     ActiveRecord::Base.transaction do
       item.publishing
