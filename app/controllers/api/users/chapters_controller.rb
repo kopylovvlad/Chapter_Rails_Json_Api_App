@@ -4,7 +4,7 @@
 # Api/Users/Chapters
 module Api
   module Users
-    class ChaptersController < ApiController
+    class ChaptersController < Api::ApplicationController
       include Api::Users::ChaptersDoc
       resource_description { short 'Api/Users/Chapters endpoints' }
 

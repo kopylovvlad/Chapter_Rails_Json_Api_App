@@ -3,7 +3,7 @@
 ##
 # Api/Sessions
 module Api
-  class SessionsController < ApiController
+  class SessionsController < Api::ApplicationController
     include Api::SessionsDoc
     resource_description { short 'Api/Sessions endpoints' }
 

@@ -4,15 +4,14 @@
 # Api/Chapters/Comments
 module Api
   module Chapters
-    class CommentsController < ApiController
+    class CommentsController < Api::Chapters::ApplicationController
       include Api::Chapters::CommentsDoc
       resource_description { short 'Api/Chapters/Comments endpoints' }
 
       # TODO: replace it
-      before_action :set_chapter
       before_action :require_user, only: %i[create update destroy]
       before_action :set_item, only: %i[show update destroy]
-      before_action :check_author, only: %i[update destroy]
+      before_action :check_comment_author, only: %i[update destroy]
 
       def index
         @items = Searcher.new(@chapter.comments.all, search_params).call
@@ -55,12 +54,8 @@ module Api
         @item = @chapter.comments.find(params[:id])
       end
 
-      def check_author
+      def check_comment_author
         return forbidden unless @item.user_id == current_user.id
-      end
-
-      def set_chapter
-        @chapter = Chapter.find(params[:chapter_id])
       end
     end
   end

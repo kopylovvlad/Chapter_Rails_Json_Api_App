@@ -4,12 +4,11 @@
 # Api/Chapters/States
 module Api
   module Chapters
-    class StatesController < ApiController
+    class StatesController < Api::Chapters::ApplicationController
       include Api::Chapters::StatesDoc
       resource_description { short 'Api/Chapters/States endpoints' }
       before_action :require_user
-      before_action :set_chapter
-      before_action :check_author
+      before_action :check_chapter_author
 
       def on_review
         @chapter = ChapterMutator.reviewing(@chapter) if @chapter.draft?
@@ -31,11 +30,7 @@ module Api
 
       private
 
-      def set_chapter
-        @chapter = Chapter.find(params[:chapter_id])
-      end
-
-      def check_author
+      def check_chapter_author
         return forbidden unless @chapter.user_id == current_user.id
       end
     end

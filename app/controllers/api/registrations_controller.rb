@@ -3,7 +3,7 @@
 ##
 # Api/Registrations
 module Api
-  class RegistrationsController < ApiController
+  class RegistrationsController < Api::ApplicationController
     include Api::RegistrationsDoc
     resource_description { short 'Api/Registrations endpoints' }
 

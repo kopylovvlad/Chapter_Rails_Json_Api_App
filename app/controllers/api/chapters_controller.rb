@@ -3,7 +3,7 @@
 ##
 # Api/Chapters
 module Api
-  class ChaptersController < ApiController
+  class ChaptersController < Api::ApplicationController
     include Api::ChaptersDoc
     resource_description { short 'Api/Chapters endpoints' }
 
